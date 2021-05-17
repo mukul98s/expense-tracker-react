@@ -6,7 +6,7 @@ function TransactionList() {
   const { transactions } = useContext(GlobalContext);
   return (
     <div className="transactionList">
-      <div className="transactionList__header">History</div>
+      <h3>History</h3>
       <div className="transactionList__history">
         {transactions.map((transaction) => {
           return <Transaction transaction={transaction} key={transaction.id} />;

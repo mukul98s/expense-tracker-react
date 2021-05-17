@@ -26,7 +26,7 @@ function AddTransaction() {
       <div className="addTransaction__form">
         <form onSubmit={onSubmit}>
           <div className="addTransaction__type">
-            <label htmlFor="type">type</label>
+            <label htmlFor="type">Expense Type</label>
             <input
               type="text"
               id="type"

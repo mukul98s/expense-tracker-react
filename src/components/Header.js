@@ -13,11 +13,11 @@ function Header() {
         <h2>Expense Tracker</h2>
       </div>
       <div className="header__balance">
-        <h3>Your Balance</h3>
-        <h2>
+        <h4>Your Balance</h4>
+        <h1>
           <span className="money">Rs.</span>
           {money}
-        </h2>
+        </h1>
       </div>
     </div>
   );

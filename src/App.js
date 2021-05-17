@@ -6,12 +6,14 @@ import { GlobalProvider } from "./context/GlobalState";
 
 function App() {
   return (
-    <GlobalProvider>
-      <Header />
-      <Expense />
-      <TransactionList />
-      <AddTransaction />
-    </GlobalProvider>
+    <div className="app">
+      <GlobalProvider>
+        <Header />
+        <Expense />
+        <TransactionList />
+        <AddTransaction />
+      </GlobalProvider>
+    </div>
   );
 }
 

@@ -17,16 +17,16 @@ function Expense() {
   return (
     <div className="expense">
       <div className="expense__income">
-        <h2>Income</h2>
+        <h4>Income</h4>
         <h2>
           <span className="money">Rs.</span>
           {positive}
         </h2>
       </div>
       <div className="expense__debt">
-        <h2>Expense</h2>
+        <h4>Expense</h4>
         <h2>
-          <span className="money">Rs.</span> {negative}
+          <span className="money">Rs.</span> {Math.abs(negative)}
         </h2>
       </div>
     </div>
