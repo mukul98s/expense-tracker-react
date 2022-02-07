@@ -9,7 +9,7 @@ function Expense() {
   const { transactions } = useContext(GlobalContext);
 
   const positive = transactions
-    .map((transaction: transaction) => transaction.amount)
+    .map((transaction: { amount: number }) => transaction.amount)
     .filter((amount) => amount > 0)
     .reduce((a, b) => a + b, 0);
 

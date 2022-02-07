@@ -1,6 +1,13 @@
-import React from "react";
+interface action {
+  type: string,
+  payload: Object
+}
 
-function AppReducer(state, action) {
+interface state {
+  transactions: [];
+}
+
+const AppReducer = (state: state, action: action) => {
   switch (action.type) {
     case "ADD_TRANSACTION":
       return {
@@ -11,7 +18,7 @@ function AppReducer(state, action) {
       return {
         ...state,
         transactions: state.transactions.filter(
-          (transaction) => transaction.id !== action.payload
+          (transaction: {id: number}) => transaction.id !== action.payload
         ),
       };
     default:

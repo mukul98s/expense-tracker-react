@@ -1,7 +1,17 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
 
-const Transaction = ({ transaction }) => {
+interface transaction {
+  amount: number;
+  type: string;
+  id: number;
+}
+
+interface Props {
+  transaction: transaction;
+}
+
+const Transaction: React.FC<Props> = ({ transaction }) => {
   const { deleteTransaction } = useContext(GlobalContext);
   return (
     <div className={`transaction ${transaction.amount > 0 ? "plus" : "minus"}`}>
@@ -16,7 +26,7 @@ const Transaction = ({ transaction }) => {
       </div>
       <button
         className="delete-btn"
-        onClick={() => deleteTransaction(transaction.id)}
+        onClick={() => deleteTransaction && deleteTransaction(transaction.id)}
       >
         x
       </button>
