@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
-import { GlobalContext, Transaction } from "../context/GlobalState";
+import { useGlobalState } from "../context/GlobalState";
 
 function Expense() {
-  const { transactions } = useContext(GlobalContext)!;
+  const { transactions } = useGlobalState();
 
   const positive = transactions
     .map((transaction: { amount: number }) => transaction.amount)
@@ -10,7 +9,7 @@ function Expense() {
     .reduce((a, b) => a + b, 0);
 
   const negative = transactions
-    .map((transaction: Transaction) => transaction.amount)
+    .map((transaction) => transaction.amount)
     .filter((amount) => amount < 0)
     .reduce((a, b) => a + b, 0);
 

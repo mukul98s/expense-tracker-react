@@ -1,13 +1,11 @@
-import React, { FormEvent, useContext, useState } from "react";
-import { GlobalContext } from "../context/GlobalState";
+import { FormEvent, useState } from "react";
+import { useGlobalState } from "../context/GlobalState";
 
 function AddTransaction() {
   const [type, setType] = useState("");
   const [amount, setAmount] = useState("");
 
-  const {
-    addTransaction,
-  } = useContext(GlobalContext)!;
+  const { addTransaction } = useGlobalState();
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,7 +23,7 @@ function AddTransaction() {
         <h3>Add New Record</h3>
       </div>
       <div className="addTransaction__form">
-        <form onSubmit={(e: FormEvent<HTMLFormElement>) => onSubmit(e)}>
+        <form onSubmit={(e) => onSubmit(e)}>
           <div className="addTransaction__type">
             <label htmlFor="type">Expense Type</label>
             <input

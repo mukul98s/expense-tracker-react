@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import { GlobalContext } from "../context/GlobalState";
+import React from "react";
+import { useGlobalState } from "../context/GlobalState";
 import Transaction from "./Transaction";
 
 const TransactionList: React.FC = () => {
-  const { transactions } = useContext(GlobalContext)!;
+  const { transactions } = useGlobalState();
   return (
     <div className="transactionList">
       <h3>History</h3>

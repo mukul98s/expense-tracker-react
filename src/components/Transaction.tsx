@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
-import { GlobalContext, Transaction as ITransaction } from "../context/GlobalState";
+import React from "react";
+import { useGlobalState, Transaction as ITransaction } from "../context/GlobalState";
 
 interface Props {
   transaction: ITransaction;
 }
 
 const Transaction: React.FC<Props> = ({ transaction }) => {
-  const { deleteTransaction } = useContext(GlobalContext)!;
+  const { deleteTransaction } = useGlobalState();
   return (
     <div className={`transaction ${transaction.amount > 0 ? "plus" : "minus"}`}>
       <div className="transaction__type">

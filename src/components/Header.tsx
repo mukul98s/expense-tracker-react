@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
-import { GlobalContext } from "../context/GlobalState";
+import { useGlobalState } from "../context/GlobalState";
 
 function Header() {
-  const { transactions } = useContext(GlobalContext);
+  const { transactions } = useGlobalState();
 
   const money = transactions
     .map((transaction: { amount: number }) => transaction.amount)

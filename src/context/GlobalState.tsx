@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useContext, useReducer } from "react";
 import { v4 as uuidv4 } from "uuid";
 import AppReducer, { TransactionsState } from "../reducer/AppReducer";
 
@@ -18,7 +18,7 @@ const initialState: TransactionsState = {
   transactions: [],
 };
 
-export const GlobalContext = React.createContext<ExpenseContext|null>(null);
+const GlobalContext = React.createContext<ExpenseContext|null>(null);
 
 export const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
@@ -41,3 +41,11 @@ export const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
     <GlobalContext.Provider value={provider}>{children}</GlobalContext.Provider>
   );
 };
+
+export const useGlobalState = () => {
+  const context = useContext(GlobalContext);
+
+  if (!context) throw new Error("useGlobalState must be used within GlobalProvider");
+
+  return context;  
+}
