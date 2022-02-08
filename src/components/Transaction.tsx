@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
 
-interface transaction {
+interface ITransaction {
   amount: number;
   type: string;
   id: number;
 }
 
 interface Props {
-  transaction: transaction;
+  transaction: ITransaction;
 }
 
 const Transaction: React.FC<Props> = ({ transaction }) => {

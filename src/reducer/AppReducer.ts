@@ -1,13 +1,13 @@
-interface action {
+interface ExpenseAction {
   type: string,
   payload: Object
 }
 
-interface state {
+interface ExpenseState {
   transactions: [];
 }
 
-const AppReducer = (state: state, action: action) => {
+const AppReducer = (state: ExpenseState, action: ExpenseAction) => {
   switch (action.type) {
     case "ADD_TRANSACTION":
       return {

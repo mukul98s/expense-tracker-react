@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
 
-interface transaction {
+interface Transaction {
   amount: number;
 }
 
@@ -14,7 +14,7 @@ function Expense() {
     .reduce((a, b) => a + b, 0);
 
   const negative = transactions
-    .map((transaction: transaction) => transaction.amount)
+    .map((transaction: Transaction) => transaction.amount)
     .filter((amount) => amount < 0)
     .reduce((a, b) => a + b, 0);
 
