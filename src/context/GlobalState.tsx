@@ -1,14 +1,14 @@
 import React, { useReducer } from "react";
 import AppReducer from "../reducer/AppReducer";
 
-interface Transaction {
+export interface Transaction {
   amount: number;
   type: string;
   id: number;
 }
 
 interface ExpenseContext {
-  transactions: object[];
+  transactions: Transaction[];
   deleteTransaction?: Function;
   addTransaction?: Function;
 }

@@ -1,9 +1,5 @@
 import React, { useContext } from "react";
-import { GlobalContext } from "../context/GlobalState";
-
-interface Transaction {
-  amount: number;
-}
+import { GlobalContext, Transaction } from "../context/GlobalState";
 
 function Expense() {
   const { transactions } = useContext(GlobalContext);

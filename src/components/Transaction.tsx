@@ -1,11 +1,5 @@
 import React, { useContext } from "react";
-import { GlobalContext } from "../context/GlobalState";
-
-interface ITransaction {
-  amount: number;
-  type: string;
-  id: number;
-}
+import { GlobalContext, Transaction as ITransaction } from "../context/GlobalState";
 
 interface Props {
   transaction: ITransaction;

@@ -1,10 +1,12 @@
+import type { Transaction } from "../context/GlobalState";
+
 interface ExpenseAction {
   type: string,
-  payload: Object
+  payload: any
 }
 
 interface ExpenseState {
-  transactions: [];
+  transactions: Transaction[];
 }
 
 const AppReducer = (state: ExpenseState, action: ExpenseAction) => {
