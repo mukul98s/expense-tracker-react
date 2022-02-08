@@ -1,9 +1,16 @@
 import type { Transaction } from "../context/GlobalState";
 
-interface ExpenseAction {
-  type: string,
-  payload: any
+interface AddTransactionAction {
+  type: 'ADD_TRANSACTION'
+  payload: Transaction
 }
+
+interface DeleteTransactionAction {
+  type: 'DELETE_TRANSACTION'
+  payload: number
+}
+
+type ExpenseAction = AddTransactionAction | DeleteTransactionAction
 
 interface ExpenseState {
   transactions: Transaction[];
