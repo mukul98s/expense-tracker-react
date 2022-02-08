@@ -1,16 +1,17 @@
 import React, { useReducer } from "react";
+import { v4 as uuidv4 } from "uuid";
 import AppReducer, { TransactionsState } from "../reducer/AppReducer";
 
 export interface Transaction {
   amount: number;
   type: string;
-  id: number;
+  id: string;
 }
 
 interface ExpenseContext {
   transactions: Transaction[];
-  deleteTransaction: (id: number) => void;
-  addTransaction: (transaction: Transaction) => void;
+  deleteTransaction: (id: Transaction['id']) => void;
+  addTransaction: (type: string, amount: number) => void;
 }
 
 const initialState: TransactionsState = {
@@ -22,11 +23,11 @@ export const GlobalContext = React.createContext<ExpenseContext|null>(null);
 export const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
-  const addTransaction = (transaction: Transaction) => {
-    dispatch({ type: "ADD_TRANSACTION", payload: transaction });
+  const addTransaction = (type: string, amount: number) => {
+    dispatch({ type: "ADD_TRANSACTION", payload: { type, amount, id: uuidv4()} });
   };
 
-  const deleteTransaction = (id: number) => {
+  const deleteTransaction = (id: Transaction['id']) => {
     dispatch({ type: "DELETE_TRANSACTION", payload: id });
   };
 

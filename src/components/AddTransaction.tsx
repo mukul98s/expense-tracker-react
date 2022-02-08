@@ -1,6 +1,5 @@
 import React, { FormEvent, useContext, useState } from "react";
 import { GlobalContext } from "../context/GlobalState";
-import { v4 as uuidv4 } from "uuid";
 
 function AddTransaction() {
   const [type, setType] = useState("");
@@ -14,7 +13,7 @@ function AddTransaction() {
     e.preventDefault();
 
     if (type && amount) {
-      addTransaction({ type, amount: parseInt(amount), id: uuidv4() });
+      addTransaction(type, parseInt(amount));
       setAmount("");
       setType("");
     }

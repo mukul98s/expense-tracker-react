@@ -7,7 +7,7 @@ interface AddTransactionAction {
 
 interface DeleteTransactionAction {
   type: 'DELETE_TRANSACTION'
-  payload: number
+  payload: Transaction['id']
 }
 
 type ExpenseAction = AddTransactionAction | DeleteTransactionAction
@@ -27,7 +27,7 @@ const AppReducer = (state: TransactionsState, action: ExpenseAction) => {
       return {
         ...state,
         transactions: state.transactions.filter(
-          (transaction: {id: number}) => transaction.id !== action.payload
+          (transaction) => transaction.id !== action.payload
         ),
       };
     default:
