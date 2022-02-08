@@ -8,17 +8,7 @@ function AddTransaction() {
 
   const {
     addTransaction,
-  }: {
-    addTransaction: ({
-      type,
-      amount,
-      id,
-    }: {
-      type: string;
-      amount: number;
-      id: number;
-    }) => void;
-  } = useContext(GlobalContext);
+  } = useContext(GlobalContext)!;
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

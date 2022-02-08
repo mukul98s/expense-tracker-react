@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { GlobalContext, Transaction } from "../context/GlobalState";
 
 function Expense() {
-  const { transactions } = useContext(GlobalContext);
+  const { transactions } = useContext(GlobalContext)!;
 
   const positive = transactions
     .map((transaction: { amount: number }) => transaction.amount)

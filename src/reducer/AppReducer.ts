@@ -12,11 +12,11 @@ interface DeleteTransactionAction {
 
 type ExpenseAction = AddTransactionAction | DeleteTransactionAction
 
-interface ExpenseState {
+export interface TransactionsState {
   transactions: Transaction[];
 }
 
-const AppReducer = (state: ExpenseState, action: ExpenseAction) => {
+const AppReducer = (state: TransactionsState, action: ExpenseAction) => {
   switch (action.type) {
     case "ADD_TRANSACTION":
       return {

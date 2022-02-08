@@ -6,7 +6,7 @@ interface Props {
 }
 
 const Transaction: React.FC<Props> = ({ transaction }) => {
-  const { deleteTransaction } = useContext(GlobalContext);
+  const { deleteTransaction } = useContext(GlobalContext)!;
   return (
     <div className={`transaction ${transaction.amount > 0 ? "plus" : "minus"}`}>
       <div className="transaction__type">

@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import AppReducer from "../reducer/AppReducer";
+import AppReducer, { TransactionsState } from "../reducer/AppReducer";
 
 export interface Transaction {
   amount: number;
@@ -9,15 +9,15 @@ export interface Transaction {
 
 interface ExpenseContext {
   transactions: Transaction[];
-  deleteTransaction?: Function;
-  addTransaction?: Function;
+  deleteTransaction: (id: number) => void;
+  addTransaction: (transaction: Transaction) => void;
 }
 
-const initialState: ExpenseContext = {
+const initialState: TransactionsState = {
   transactions: [],
 };
 
-export const GlobalContext = React.createContext(initialState);
+export const GlobalContext = React.createContext<ExpenseContext|null>(null);
 
 export const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
