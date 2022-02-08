@@ -1,32 +1,33 @@
-import React, { useReducer } from "react";
-import AppReducer from "../reducer/AppReducer";
+import React, { useContext, useReducer } from "react";
+import { v4 as uuidv4 } from "uuid";
+import AppReducer, { TransactionsState } from "../reducer/AppReducer";
 
-interface transaction {
+export interface Transaction {
   amount: number;
   type: string;
-  id: number;
+  id: string;
 }
 
-interface state {
-  transactions: object[];
-  deleteTransaction?: Function;
-  addTransaction?: Function;
+interface ExpenseContext {
+  transactions: Transaction[];
+  deleteTransaction: (id: Transaction['id']) => void;
+  addTransaction: (type: string, amount: number) => void;
 }
 
-const initialState: state = {
+const initialState: TransactionsState = {
   transactions: [],
 };
 
-export const GlobalContext = React.createContext(initialState);
+const GlobalContext = React.createContext<ExpenseContext|null>(null);
 
 export const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
-  const addTransaction = (transaction: transaction) => {
-    dispatch({ type: "ADD_TRANSACTION", payload: transaction });
+  const addTransaction = (type: string, amount: number) => {
+    dispatch({ type: "ADD_TRANSACTION", payload: { type, amount, id: uuidv4()} });
   };
 
-  const deleteTransaction = (id: number) => {
+  const deleteTransaction = (id: Transaction['id']) => {
     dispatch({ type: "DELETE_TRANSACTION", payload: id });
   };
 
@@ -40,3 +41,11 @@ export const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
     <GlobalContext.Provider value={provider}>{children}</GlobalContext.Provider>
   );
 };
+
+export const useGlobalState = () => {
+  const context = useContext(GlobalContext);
+
+  if (!context) throw new Error("useGlobalState must be used within GlobalProvider");
+
+  return context;  
+}

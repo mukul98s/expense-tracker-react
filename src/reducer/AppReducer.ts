@@ -1,13 +1,22 @@
-interface action {
-  type: string,
-  payload: Object
+import type { Transaction } from "../context/GlobalState";
+
+interface AddTransactionAction {
+  type: 'ADD_TRANSACTION'
+  payload: Transaction
 }
 
-interface state {
-  transactions: [];
+interface DeleteTransactionAction {
+  type: 'DELETE_TRANSACTION'
+  payload: Transaction['id']
 }
 
-const AppReducer = (state: state, action: action) => {
+type ExpenseAction = AddTransactionAction | DeleteTransactionAction
+
+export interface TransactionsState {
+  transactions: Transaction[];
+}
+
+const AppReducer = (state: TransactionsState, action: ExpenseAction) => {
   switch (action.type) {
     case "ADD_TRANSACTION":
       return {
@@ -18,7 +27,7 @@ const AppReducer = (state: state, action: action) => {
       return {
         ...state,
         transactions: state.transactions.filter(
-          (transaction: {id: number}) => transaction.id !== action.payload
+          (transaction) => transaction.id !== action.payload
         ),
       };
     default:
